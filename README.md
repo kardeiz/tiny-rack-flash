@@ -23,9 +23,11 @@ Or install it yourself as:
 Inside your main Rack class (e.g., `Sinatra::Base` or `Cuba`), simply add a
 
     require 'tiny_rack_flash'
-    include TinyRackFlash
+    use TinyRackFlash do |helpers|
+      include helpers # adds `flash` method to your app class
+    end
 
-The `include` will hook up some Rack middleware for rotating the flash and provide a `flash` method for use in your route handlers.
+This will hook up some Rack middleware for rotating the flash and provide a `flash` method for use in your route handlers.
 
 See `tests.rb` for examples.
 

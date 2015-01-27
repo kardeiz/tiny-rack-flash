@@ -1,6 +1,6 @@
 require 'delegate'
 
-module TinyRackFlash
+class TinyRackFlash
   
   FlashKey   = 'tiny.rack.flash'.freeze
   SessionKey = 'rack.session'.freeze
@@ -45,28 +45,24 @@ module TinyRackFlash
     end
   end
 
-  def flash
-    env[FlashKey] ||= begin
-      session = env[SessionKey]
-      FlashHash.new((session ? session[FlashKey] : {}))
+  module Helpers
+    def flash
+      env[FlashKey] ||= begin
+        session = env[SessionKey]
+        FlashHash.new((session ? session[FlashKey] : {}))
+      end
     end
   end
-
-  class Middleware
   
-    def initialize(app, opts={})
-      @app, @opts = app, opts
-    end
-    
-    def call(env)
-      res = @app.call(env)
-      env[SessionKey][FlashKey] = env[FlashKey].next if env[FlashKey]
-      res
-    end
-    
+  def initialize(app, opts={})
+    @app, @opts = app, opts
+    yield Helpers if block_given?
   end
-
-  def self.included(app); app.use Middleware; end
-
+  
+  def call(env)
+    res = @app.call(env)
+    env[SessionKey][FlashKey] = env[FlashKey].next if env[FlashKey]
+    res
+  end
 
 end

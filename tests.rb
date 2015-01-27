@@ -10,7 +10,10 @@ require "cuba"
 
 class SinatraApp < Sinatra::Base
   
-  include TinyRackFlash
+  use TinyRackFlash do |mixins|
+    include mixins
+  end
+
   set :sessions, true
 
   get '/' do
@@ -31,7 +34,9 @@ end
 class CubaApp < Cuba
 
   use Rack::Session::Cookie, secret: "__a_very_long_string__"
-  include TinyRackFlash
+  use TinyRackFlash do |mixins|
+    include mixins
+  end
 
   define do
     on root do
