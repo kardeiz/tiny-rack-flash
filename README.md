@@ -2,6 +2,8 @@
 
 A very small flash implementation for Rack apps
 
+Works well with Cuba, Sinatra, and others--
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -26,6 +28,10 @@ Inside your main Rack class (e.g., `Sinatra::Base` or `Cuba`), simply add a
 The `include` will hook up some Rack middleware for rotating the flash and provide a `flash` method for use in your route handlers.
 
 See `tests.rb` for examples.
+
+## Notes
+
+This gem's `FlashHash` implementation is taken from Stephen Eley's `FlashHash` implementation at https://github.com/SFEley/sinatra-flash.
 
 ## Contributing
 
