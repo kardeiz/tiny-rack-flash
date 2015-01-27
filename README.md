@@ -1,6 +1,6 @@
-# Tiny::Rack::Flash
+# TinyRackFlash
 
-TODO: Write a gem description
+A very small flash implementation for Rack apps
 
 ## Installation
 
@@ -18,7 +18,14 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Inside your main Rack class (e.g., `Sinatra::Base` or `Cuba`), simply add a
+
+    require 'tiny_rack_flash'
+    include TinyRackFlash
+
+The `include` will hook up some Rack middleware for rotating the flash and provide a `flash` method for use in your route handlers.
+
+See `tests.rb` for examples.
 
 ## Contributing
 
