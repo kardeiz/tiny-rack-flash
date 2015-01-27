@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name          = "tiny-rack-flash"
-  spec.version       = '1.0.0'
+  spec.version       = '0.0.1'
   spec.authors       = ["Jacob Brown"]
   spec.email         = ["j.h.brown@tcu.edu"]
   spec.description   = %q{ A tiny flash implementation for Rack apps }
